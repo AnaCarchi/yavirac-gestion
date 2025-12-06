@@ -33,7 +33,7 @@ import { Student, EvaluationTemplate, EvaluationField } from '../../../../core/m
         </div>
 
         <!-- Selección de Asignatura -->
-        <div class="subject-selection" *ngIf="student.enrolledSubjects && student.enrolledSubjects.length > 1">
+        <div class="subject-selection" *ngIf="student?.enrolledSubjects && student.enrolledSubjects!.length > 1">
           <label>Selecciona la asignatura a evaluar:</label>
           <div class="subjects-grid">
             <button
@@ -200,7 +200,7 @@ import { Student, EvaluationTemplate, EvaluationField } from '../../../../core/m
       </div>
 
       <!-- No Subject Selected -->
-      <div class="empty-state" *ngIf="student?.enrolledSubjects && student?.enrolledSubjects?.length > 0">
+      <div class="empty-state" *ngIf="student?.enrolledSubjects && student.enrolledSubjects!.length > 0 && !selectedSubjectType">
         <div class="empty-icon">📝</div>
         <h3>Selecciona una asignatura</h3>
         <p>Elige la asignatura que deseas evaluar</p>

@@ -1,3 +1,6 @@
+import { User } from './user.model';
+export type Tutor = User;
+
 export * from './user.model';
 export * from './role.model';
 export * from './permission.model';
@@ -15,7 +18,5 @@ export * from './response.model';
 export * from './filter.model';
 export * from './constants';
 
-
 // Exportar tipos adicionales
 export type { InternshipStatus } from './internship.model';
-export type Tutor = User;

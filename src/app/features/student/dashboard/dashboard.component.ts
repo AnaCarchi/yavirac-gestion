@@ -46,7 +46,7 @@ import { Student } from '../../../core/models';
         <h2>📚 Mis Asignaturas</h2>
         <p class="section-description">Accede a tus asignaturas activas</p>
 
-        <div class="subjects-grid" *ngIf="student?.enrolledSubjects && student?.enrolledSubjects?.length > 0">
+        <div class="subjects-grid" *ngIf="student?.enrolledSubjects && student.enrolledSubjects!.length > 0">
           <div 
             *ngFor="let subject of student?.enrolledSubjects" 
             class="subject-card"
@@ -73,7 +73,7 @@ import { Student } from '../../../core/models';
           </div>
         </div>
 
-        <div class="empty-state" *ngIf="!student?.enrolledSubjects || student?.enrolledSubjects?.length === 0">
+        <div class="empty-state" *ngIf="!student?.enrolledSubjects || student.enrolledSubjects!.length === 0">
           <div class="empty-icon">📚</div>
           <p>No tienes asignaturas activas</p>
           <p class="empty-hint">Contacta a tu coordinador de carrera</p>
