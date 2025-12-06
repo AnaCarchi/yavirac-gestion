@@ -36,10 +36,23 @@ export class LoginComponent {
     this.loading = true;
     this.errorMessage = '';
 
+    
+    // Simular un token falso para desarrollo
+    localStorage.setItem('token', 'fake-token-for-development');
+    
+    // Esperar un momento para simular la carga
+    setTimeout(() => {
+      this.loading = false;
+      // Redirigir al dashboard
+      this.router.navigate(['/dashboard']);
+    }, 500);
+
+    /* 
+    // DESCOMENTAR ESTO CUANDO TENGAS EL BACKEND FUNCIONANDO
+    
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
         if (response.status === 200 && response.data) {
-          // Redirigir al dashboard por defecto
           this.router.navigate(['/dashboard']);
         } else {
           this.errorMessage = response.message || 'Error al iniciar sesión';
@@ -51,6 +64,7 @@ export class LoginComponent {
         this.loading = false;
       }
     });
+    */
   }
 
   private markFormGroupTouched(formGroup: FormGroup) {
