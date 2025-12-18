@@ -12,6 +12,26 @@
     </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <!-- Selección de Rol -->
+      <div class="form-group">
+        <label for="role">Selecciona tu Rol</label>
+        <select 
+          id="role" 
+          formControlName="role"
+          class="form-control"
+          [class.is-invalid]="role?.invalid && role?.touched"
+        >
+          <option value="">-- Seleccione un rol --</option>
+          <option value="admin">👑 Administrador</option>
+          <option value="coordinator">📊 Coordinador</option>
+          <option value="tutor">👔 Tutor Empresarial</option>
+          <option value="student">🎓 Estudiante</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="role?.invalid && role?.touched">
+          <span *ngIf="role?.errors?.['required']">Debes seleccionar un rol</span>
+        </div>
+      </div>
+
       <div class="form-group">
         <label for="email">Correo Electrónico</label>
         <input 
@@ -68,6 +88,7 @@
 
       <div class="demo-credentials">
         <p><strong>Credenciales de prueba:</strong></p>
+        <p>Selecciona un rol y usa:</p>
         <p>Email: admin&#64;yavirac.edu.ec</p>
         <p>Password: admin123</p>
       </div>

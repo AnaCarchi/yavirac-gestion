@@ -22,6 +22,7 @@ export class LoginComponent {
 
   constructor() {
     this.loginForm = this.fb.group({
+      role: ['', Validators.required],
       email: ['admin@yavirac.edu.ec', [Validators.required, Validators.email]],
       password: ['admin123', [Validators.required, Validators.minLength(6)]]
     });
@@ -36,6 +37,7 @@ export class LoginComponent {
     this.loading = true;
     this.errorMessage = '';
 
+    const selectedRole = this.loginForm.get('role')?.value;
     
     // Simular un token falso para desarrollo
     localStorage.setItem('token', 'fake-token-for-development');
@@ -43,8 +45,8 @@ export class LoginComponent {
     // Esperar un momento para simular la carga
     setTimeout(() => {
       this.loading = false;
-      // Redirigir al dashboard
-      this.router.navigate(['/dashboard']);
+      // Redirigir según el rol seleccionado
+      this.redirectByRole(selectedRole);
     }, 500);
 
     /* 
@@ -53,7 +55,8 @@ export class LoginComponent {
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
         if (response.status === 200 && response.data) {
-          this.router.navigate(['/dashboard']);
+          const selectedRole = this.loginForm.get('role')?.value;
+          this.redirectByRole(selectedRole);
         } else {
           this.errorMessage = response.message || 'Error al iniciar sesión';
         }
@@ -67,11 +70,27 @@ export class LoginComponent {
     */
   }
 
+  private redirectByRole(role: string): void {
+    const roleRoutes: { [key: string]: string } = {
+      'admin': '/admin/dashboard',
+      'coordinator': '/coordinator/dashboard',
+      'tutor': '/tutor/dashboard',
+      'student': '/student/dashboard'
+    };
+
+    const route = roleRoutes[role] || '/dashboard';
+    this.router.navigate([route]);
+  }
+
   private markFormGroupTouched(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(key => {
       const control = formGroup.get(key);
       control?.markAsTouched();
     });
+  }
+
+  get role() {
+    return this.loginForm.get('role');
   }
 
   get email() {
