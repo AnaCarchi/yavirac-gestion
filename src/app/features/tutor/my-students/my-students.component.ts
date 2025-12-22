@@ -81,199 +81,242 @@ import { Student } from '../../../core/models';
     </div>
   `,
   styles: [`
-    .my-students {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
+:root {
+  --blue: #2563eb;
+  --blue-soft: #eff6ff;
+  --orange: #f97316;
+  --black: #111827;
+  --gray: #6b7280;
+  --border: #e5e7eb;
+}
 
-    .header {
-      margin-bottom: 32px;
+/* ================= CONTAINER ================= */
+.my-students {
+  max-width: 1400px;
+  margin: 0 auto;
+}
 
-      h1 {
-        font-size: 32px;
-        color: #1f2937;
-        margin-bottom: 8px;
-        font-weight: 700;
-      }
+/* ================= HEADER ================= */
+.header {
+  margin-bottom: 32px;
+}
 
-      p {
-        color: #6b7280;
-        font-size: 16px;
-        margin: 0;
-      }
-    }
+.header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 6px;
+}
 
-    .students-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 24px;
-    }
+.header p {
+  color: var(--gray);
+  font-size: 15px;
+  margin: 0;
+}
 
-    .student-card {
-      background: white;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s;
+/* ================= GRID ================= */
+.students-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
 
-      &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(245, 158, 11, 0.15);
-      }
+/* ================= CARD ================= */
+.student-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border-top: 4px solid var(--blue);
+  transition: all 0.25s ease;
+}
 
-      .student-header {
-        display: flex;
-        gap: 16px;
-        margin-bottom: 20px;
-        padding-bottom: 20px;
-        border-bottom: 2px solid #f3f4f6;
+.student-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+}
 
-        .student-avatar {
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 700;
-          font-size: 20px;
-          flex-shrink: 0;
-        }
+/* ================= HEADER CARD ================= */
+.student-header {
+  display: flex;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
 
-        .student-info {
-          flex: 1;
+.student-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), #1e40af);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
 
-          .student-name {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 8px;
-          }
+.student-info {
+  flex: 1;
+}
 
-          .student-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+.student-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 6px;
+}
 
-            span {
-              font-size: 13px;
-              color: #6b7280;
-            }
-          }
-        }
-      }
+.student-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
-      .student-details {
-        margin-bottom: 16px;
+.student-meta span {
+  font-size: 13px;
+  color: var(--gray);
+}
 
-        .detail-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 8px 0;
+/* ================= DETAILS ================= */
+.student-details {
+  margin-bottom: 16px;
+}
 
-          .label {
-            font-size: 13px;
-            color: #6b7280;
-            font-weight: 500;
-          }
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+}
 
-          .value {
-            font-size: 14px;
-            color: #1f2937;
-            font-weight: 600;
-          }
+.detail-row .label {
+  font-size: 13px;
+  color: var(--gray);
+  font-weight: 500;
+}
 
-          .badge {
-            padding: 4px 12px;
-            background: #fee2e2;
-            color: #991b1b;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: 600;
+.detail-row .value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+}
 
-            &.active {
-              background: #d1fae5;
-              color: #065f46;
-            }
-          }
-        }
-      }
+/* ================= BADGES ================= */
+.badge {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(249, 115, 22, 0.15);
+  color: var(--orange);
+}
 
-      .student-subjects {
-        margin-bottom: 20px;
+.badge.active {
+  background: rgba(37, 99, 235, 0.15);
+  color: var(--blue);
+}
 
-        .label {
-          font-size: 13px;
-          color: #6b7280;
-          font-weight: 500;
-          display: block;
-          margin-bottom: 8px;
-        }
+/* ================= SUBJECTS ================= */
+.student-subjects {
+  margin-bottom: 20px;
+}
 
-        .subjects-list {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 6px;
+.student-subjects .label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray);
+  margin-bottom: 8px;
+  display: block;
+}
 
-          .subject-badge {
-            padding: 6px 12px;
-            background: #fef3c7;
-            color: #92400e;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: 600;
-          }
-        }
-      }
-    }
+.subjects-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
 
-    .empty-state, .loading-spinner {
-      text-align: center;
-      padding: 80px 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+.subject-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--blue-soft);
+  color: var(--blue);
+}
 
-      .empty-icon {
-        font-size: 64px;
-        margin-bottom: 20px;
-      }
+/* ================= ACTIONS ================= */
+.student-actions .btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--blue), #1e40af);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
 
-      h3 {
-        font-size: 20px;
-        color: #1f2937;
-        margin-bottom: 8px;
-      }
+.student-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4);
+}
 
-      p {
-        color: #6b7280;
-        margin: 0;
-      }
+/* ================= EMPTY & LOADING ================= */
+.empty-state,
+.loading-spinner {
+  text-align: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
 
-      .spinner {
-        width: 40px;
-        height: 40px;
-        border: 3px solid #e5e7eb;
-        border-top-color: #f59e0b;
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
-        margin: 0 auto 16px;
-      }
-    }
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+.empty-state h3,
+.loading-spinner p {
+  font-size: 18px;
+  color: var(--black);
+}
 
-    @media (max-width: 768px) {
-      .students-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  `]
+.empty-state p {
+  color: var(--gray);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .students-grid {
+    grid-template-columns: 1fr;
+  }
+}
+`]
+
 })
 export class MyStudentsComponent implements OnInit {
   private studentService = inject(StudentService);

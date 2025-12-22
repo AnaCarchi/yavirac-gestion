@@ -68,234 +68,230 @@ export interface MenuItem {
     </aside>
   `,
   styles: [`
-    .sidebar {
-      width: 260px;
-      height: 100vh;
-      background: white;
-      border-right: 1px solid #e5e7eb;
-      display: flex;
-      flex-direction: column;
-      transition: width 0.3s ease;
-      position: sticky;
-      top: 0;
+:root {
+  --blue: #2563eb;
+  --blue-soft: #eff6ff;
+  --orange: #f97316;
+  --black: #111827;
+  --gray: #6b7280;
+  --border: #e5e7eb;
+}
 
-      &.collapsed {
-        width: 70px;
+/* ================= SIDEBAR ================= */
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background: white;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: sticky;
+  top: 0;
+}
 
-        .logo-text,
-        .nav-label,
-        .submenu {
-          display: none;
-        }
+/* ================= COLLAPSED ================= */
+.sidebar.collapsed {
+  width: 72px;
+}
 
-        .sidebar-footer {
-          display: none;
-        }
+.sidebar.collapsed .logo-text,
+.sidebar.collapsed .nav-label,
+.sidebar.collapsed .submenu,
+.sidebar.collapsed .sidebar-footer {
+  display: none;
+}
 
-        .nav-link {
-          justify-content: center;
-        }
-      }
-    }
+.sidebar.collapsed .nav-link {
+  justify-content: center;
+}
 
-    .sidebar-header {
-      padding: 20px;
-      border-bottom: 1px solid #e5e7eb;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+/* ================= HEADER ================= */
+.sidebar-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-        .logo-icon {
-          font-size: 28px;
-          line-height: 1;
-        }
+.logo-icon {
+  font-size: 28px;
+  color: var(--blue);
+}
 
-        .logo-text {
-          font-size: 18px;
-          font-weight: 700;
-          color: #1f2937;
-        }
-      }
+.logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--black);
+}
 
-      .toggle-btn {
-        width: 28px;
-        height: 28px;
-        border: none;
-        background: #f3f4f6;
-        border-radius: 6px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s;
+/* Toggle */
+.toggle-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: none;
+  background: var(--blue-soft);
+  color: var(--blue);
+  cursor: pointer;
+  transition: all 0.2s;
+}
 
-        &:hover {
-          background: #e5e7eb;
-        }
+.toggle-btn:hover {
+  background: var(--blue);
+  color: white;
+}
 
-        span {
-          font-size: 16px;
-        }
-      }
-    }
+/* ================= NAV ================= */
+.sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 0;
+}
 
-    .sidebar-nav {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px 0;
+/* Scrollbar */
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px;
+}
 
-      &::-webkit-scrollbar {
-        width: 6px;
-      }
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
 
-      &::-webkit-scrollbar-thumb {
-        background: #d1d5db;
-        border-radius: 3px;
-      }
-    }
+/* ================= MENU ================= */
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    .nav-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+.nav-item {
+  margin-bottom: 4px;
+}
 
-    .nav-item {
-      margin: 0;
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 20px;
+  color: var(--gray);
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 0 20px 20px 0;
+  transition: all 0.2s ease;
+}
 
-      .nav-link {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 12px 20px;
-        color: #6b7280;
-        text-decoration: none;
-        transition: all 0.2s;
-        cursor: pointer;
+/* Hover */
+.nav-link:hover {
+  background: var(--blue-soft);
+  color: var(--blue);
+}
 
-        &:hover {
-          background: #f9fafb;
-          color: #667eea;
-        }
+/* Active */
+.nav-link.active {
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-weight: 600;
+  border-left: 4px solid var(--orange);
+}
 
-        &.active {
-          background: #eef2ff;
-          color: #667eea;
-          border-right: 3px solid #667eea;
-          font-weight: 500;
-        }
+/* Icon */
+.nav-icon {
+  font-size: 20px;
+  min-width: 20px;
+  text-align: center;
+}
 
-        .nav-icon {
-          font-size: 20px;
-          min-width: 20px;
-          text-align: center;
-        }
+/* ================= SUBMENU ================= */
+.submenu {
+  list-style: none;
+  padding: 6px 0 8px 0;
+  margin: 0;
+}
 
-        .nav-label {
-          font-size: 14px;
-        }
-      }
-    }
+.submenu-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px 10px 52px;
+  font-size: 13px;
+  color: var(--gray);
+  text-decoration: none;
+  transition: all 0.2s;
+}
 
-    .submenu {
-      list-style: none;
-      padding: 0;
-      margin: 4px 0 8px 0;
-      background: #f9fafb;
+.submenu-link:hover {
+  color: var(--blue);
+  background: #f8fafc;
+}
 
-      .submenu-item {
-        .submenu-link {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding: 10px 20px 10px 52px;
-          color: #6b7280;
-          text-decoration: none;
-          font-size: 13px;
-          transition: all 0.2s;
+.submenu-link.active {
+  color: var(--blue);
+  font-weight: 500;
+}
 
-          &:hover {
-            background: #f3f4f6;
-            color: #667eea;
-          }
+.submenu-icon {
+  font-size: 16px;
+}
 
-          &.active {
-            color: #667eea;
-            font-weight: 500;
-          }
+/* ================= FOOTER ================= */
+.sidebar-footer {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+}
 
-          .submenu-icon {
-            font-size: 16px;
-          }
-        }
-      }
-    }
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-    .sidebar-footer {
-      padding: 16px;
-      border-top: 1px solid #e5e7eb;
+.user-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), #1e40af);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
 
-      .user-info {
-        display: flex;
-        align-items: center;
-        gap: 12px;
+.user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+}
 
-        .user-avatar {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 600;
-          font-size: 14px;
-        }
+.user-role {
+  font-size: 12px;
+  color: var(--gray);
+}
 
-        .user-details {
-          flex: 1;
-          min-width: 0;
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 4px 0 12px rgba(0,0,0,0.15);
+  }
 
-          .user-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1f2937;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-
-          .user-role {
-            font-size: 12px;
-            color: #6b7280;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-        }
-      }
-    }
-
-    @media (max-width: 768px) {
-      .sidebar {
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-
-        &.collapsed {
-          transform: translateX(-100%);
-        }
-      }
-    }
-  `]
+  .sidebar.collapsed {
+    transform: translateX(-100%);
+  }
+}
+`]
 })
 export class SidebarComponent {
   @Input() title: string = 'Sistema Yavirac';

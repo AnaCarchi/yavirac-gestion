@@ -140,53 +140,49 @@ import { Student } from '../../../core/models';
   styles: [`
 /* ================= VARIABLES ================= */
 :host {
-  --blue: #1e40af;
+  --blue: #2563eb;
+  --blue-dark: #1e40af;
+  --blue-soft: #eff6ff;
   --orange: #f97316;
-  --black: #111827;
-  --white: #ffffff;
-  --gray-bg: #f3f4f6;
-  --gray-text: #6b7280;
+  --black: #0f172a;
+  --gray: #6b7280;
   --border: #e5e7eb;
-
-  --radius: 14px;
-  --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 /* ================= CONTAINER ================= */
 .student-dashboard {
-  min-height: 100vh;
-  background: var(--gray-bg);
-  padding: 32px 16px 48px;
-}
-
-/* ================= WELCOME ================= */
-.welcome-section {
   max-width: 1200px;
-  margin: 0 auto 32px;
+  margin: 0 auto;
 }
 
-.welcome-section h1 {
-  font-size: 32px;
+/* ================= HEADER ================= */
+.dashboard-header {
+  margin-bottom: 32px;
+}
+
+.dashboard-header h1 {
+  font-size: 30px;
   font-weight: 800;
-  color: var(--blue);
+  color: var(--black);
   margin-bottom: 6px;
 }
 
-.welcome-section p {
-  color: var(--gray-text);
+.dashboard-header p {
   font-size: 15px;
+  color: var(--gray);
 }
 
-/* ================= INFO CARD ================= */
-.info-card {
-  max-width: 1200px;
-  margin: 0 auto 32px;
-  background: var(--white);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+/* ================= CARDS ================= */
+.info-card,
+.section-card {
+  background: white;
+  border-radius: 16px;
   padding: 28px;
+  margin-bottom: 32px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
+/* ================= INFO ================= */
 .info-header {
   display: flex;
   gap: 24px;
@@ -194,12 +190,12 @@ import { Student } from '../../../core/models';
 }
 
 .student-avatar-large {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background: var(--blue);
-  color: var(--white);
-  font-size: 32px;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: white;
+  font-size: 26px;
   font-weight: 800;
   display: flex;
   align-items: center;
@@ -218,106 +214,87 @@ import { Student } from '../../../core/models';
   flex-wrap: wrap;
   gap: 14px;
   font-size: 14px;
-  color: var(--gray-text);
+  color: var(--gray);
 }
 
+/* ================= BADGES ================= */
 .status-badges {
-  margin-top: 12px;
+  margin-top: 14px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
 .badge {
-  padding: 8px 14px;
+  padding: 6px 14px;
   border-radius: 999px;
   font-size: 13px;
   font-weight: 600;
   border: 1px solid var(--border);
-  background: #fff7ed;
-  color: var(--orange);
+  background: #f9fafb;
+  color: var(--gray);
 }
 
 .badge.active {
-  background: #eff6ff;
+  background: var(--blue-soft);
   color: var(--blue);
   border-color: #bfdbfe;
 }
 
-/* ================= SECTION CARD ================= */
-.section-card {
-  max-width: 1200px;
-  margin: 0 auto 32px;
-  background: var(--white);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 28px;
-}
-
+/* ================= SECTIONS ================= */
 .section-card h2 {
   font-size: 22px;
-  font-weight: 800;
-  color: var(--blue);
+  font-weight: 700;
+  color: var(--black);
   margin-bottom: 6px;
 }
 
 .section-description {
   font-size: 14px;
-  color: var(--gray-text);
+  color: var(--gray);
   margin-bottom: 24px;
 }
 
 /* ================= SUBJECTS ================= */
 .subjects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
 }
 
 .subject-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 24px;
-  border-top: 4px solid var(--blue);
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
+  transition: all 0.25s ease;
 }
 
-.subject-card.vinculation {
-  border-top-color: var(--orange);
-}
-
-.subject-card.dual {
-  border-top-color: var(--blue);
-}
-
-.subject-card.prepro {
-  border-top-color: var(--black);
-}
-
-.subject-icon {
-  font-size: 40px;
+.subject-card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 10px 25px rgba(37,99,235,0.15);
 }
 
 .subject-info h3 {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
   color: var(--black);
   margin-bottom: 4px;
 }
 
 .subject-info p {
   font-size: 14px;
-  color: var(--gray-text);
+  color: var(--gray);
 }
 
 .subject-meta {
   display: flex;
   justify-content: space-between;
   font-size: 13px;
-  color: var(--gray-text);
+  color: var(--gray);
 }
 
 /* ================= BUTTON ================= */
@@ -325,34 +302,19 @@ import { Student } from '../../../core/models';
   margin-top: auto;
   padding: 12px;
   border-radius: 10px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   text-align: center;
   text-decoration: none;
 }
 
 .btn-primary {
   background: var(--blue);
-  color: var(--white);
+  color: white;
 }
 
 .btn-primary:hover {
-  background: #1e3a8a;
-}
-
-/* ================= EMPTY ================= */
-.empty-state {
-  text-align: center;
-  padding: 48px;
-}
-
-.empty-icon {
-  font-size: 48px;
-  margin-bottom: 12px;
-}
-
-.empty-hint {
-  font-size: 14px;
-  color: var(--gray-text);
+  background: var(--blue-dark);
 }
 
 /* ================= TUTOR ================= */
@@ -367,60 +329,49 @@ import { Student } from '../../../core/models';
   height: 70px;
   border-radius: 50%;
   background: var(--orange);
-  color: var(--white);
-  font-weight: 800;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .tutor-details h3 {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 600;
   color: var(--black);
 }
 
 .tutor-contact {
   font-size: 14px;
-  color: var(--gray-text);
+  color: var(--gray);
 }
 
-/* ================= ACTIONS ================= */
-.actions-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-.action-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 24px;
-  box-shadow: var(--shadow);
-  text-decoration: none;
+/* ================= STATES ================= */
+.empty-state {
   text-align: center;
+  padding: 48px;
+  color: var(--gray);
 }
 
-.action-icon {
-  font-size: 36px;
-  margin-bottom: 10px;
-}
-
-.action-title {
-  font-weight: 700;
-  color: var(--black);
-}
-
-.action-description {
-  font-size: 14px;
-  color: var(--gray-text);
-}
-
-/* ================= LOADING ================= */
 .loading-spinner {
   text-align: center;
   padding: 40px;
-  color: var(--blue);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* ================= RESPONSIVE ================= */
@@ -431,10 +382,11 @@ import { Student } from '../../../core/models';
     text-align: center;
   }
 
-  .welcome-section h1 {
-    font-size: 26px;
+  .subjects-grid {
+    grid-template-columns: 1fr;
   }
 }
+
 `]
 })
 export class StudentDashboardComponent implements OnInit {
